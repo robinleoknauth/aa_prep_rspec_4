@@ -41,4 +41,16 @@ class Temperature
     @degrees = self.class.ftoc(temperature)
   end
 
+  class Celsius < Temperature
+    def initialize(temp)
+      super( { c: temp } )
+    end
+  end
+
+  class Fahrenheit < Temperature
+    def initialize(temp)
+      super( { f: temp } )
+    end
+  end
+
 end

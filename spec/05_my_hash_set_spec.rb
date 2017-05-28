@@ -1,4 +1,4 @@
-require "rspec"
+ require "rspec"
 require "05_my_hash_set"
 
 describe MyHashSet do
@@ -110,7 +110,7 @@ describe MyHashSet do
         expect(set1.symmetric_difference(set2)).to be_a(MyHashSet)
       end
 
-      it "returns a set that includes all elements included set1 and  set2 but both" do
+      it "returns a set that includes all elements included in set1 and set2 but not in both" do
         expect(set1.symmetric_difference(set2).to_a).to contain_exactly(
           "Mark Hamill",
           "Harrison Ford",
