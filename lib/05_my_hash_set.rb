@@ -29,7 +29,73 @@
 # all the items of `set1` that aren't in `set2`.
 
 class MyHashSet
+  attr_accessor :store
+
+  def initialize
+    @store = Hash.new
+  end
+
+  def insert(el)
+    @store[el] = true
+  end
+
+  def include?(el)
+    @store[el] == true
+  end
+
+  def delete(el)
+    @store[el] = false
+  end
+
+  def to_a
+    @store.keys
+  end
+
+  def union(other_set)
+    result = MyHashSet.new
+    self.to_a.each do |k|
+      result.insert(k)
+    end
+    other_set.to_a.each do |k|
+      result.insert(k)
+    end
+    result
+  end
+
+  def intersect(other_set)
+    result = MyHashSet.new
+    self.to_a.each do |k|
+      result.insert(k) if other_set.to_a.include?(k)
+    end
+    result
+  end
+
+  def minus(other_set)
+    result = MyHashSet.new
+    self.to_a.each do |k|
+      result.insert(k) if !other_set.to_a.include?(k)
+    end
+    result
+  end
+
+  def symmetric_difference(other_set)
+    result = MyHashSet.new
+    self.to_a.each do |k|
+      result.insert(k) unless other_set.to_a.include?(k)
+    end
+    other_set.to_a.each do |k|
+      result.insert(k) unless self.to_a.include?(k)
+    end
+    result
+  end
+
+  def ==(object)
+    object.class == MyHashSet &&
+    self.to_a.length == object.to_a.length &&
+    object.to_a.all? { |k| self.include?(k) }
+  end
 end
+
 
 # Bonus
 #
