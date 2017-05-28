@@ -1,5 +1,5 @@
 class Temperature
-  
+
   def initialize(temperature)
     if temperature.has_key?(:f)
       self.fahrenheit = temperature[:f]
